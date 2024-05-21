@@ -1,6 +1,14 @@
 
 package academia;
 
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 public class NewJFrame extends javax.swing.JFrame {
 
     public NewJFrame() {
@@ -10,18 +18,20 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         PanelinicioUsuario = new javax.swing.JLabel();
         PanelinicioContraseña = new javax.swing.JLabel();
         Paneliniciousuariobloque = new javax.swing.JTextField();
         PanelinicioSiguiente = new javax.swing.JButton();
         PanelinicioContraseñabloque = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
+        PanelinicioSiguiente1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(0, 0, 0));
+        setAutoRequestFocus(false);
+        setBackground(new java.awt.Color(255, 120, 120));
 
-        jLabel1.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel1.setText("Academia ");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         PanelinicioUsuario.setText("Usuario ");
 
@@ -48,101 +58,130 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(PanelinicioSiguiente)
-                    .addGroup(layout.createSequentialGroup()
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 255, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Iniciar sesion");
+        jLabel1.setToolTipText("");
+
+        PanelinicioSiguiente1.setBackground(new java.awt.Color(102, 255, 102));
+        PanelinicioSiguiente1.setText("Delete");
+        PanelinicioSiguiente1.setToolTipText("");
+        PanelinicioSiguiente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PanelinicioSiguiente1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(PanelinicioContraseña)
-                        .addGap(25, 25, 25)
-                        .addComponent(PanelinicioContraseñabloque))
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(PanelinicioContraseñabloque, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(PanelinicioUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Paneliniciousuariobloque, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(40, 40, 40))
+                        .addGap(62, 62, 62)
+                        .addComponent(Paneliniciousuariobloque, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(PanelinicioSiguiente)
+                        .addGap(30, 30, 30)
+                        .addComponent(PanelinicioSiguiente1)
+                        .addGap(57, 57, 57)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Paneliniciousuariobloque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PanelinicioUsuario))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PanelinicioContraseñabloque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PanelinicioContraseña))
                 .addGap(37, 37, 37)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PanelinicioUsuario)
-                    .addComponent(Paneliniciousuariobloque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PanelinicioContraseña)
-                    .addComponent(PanelinicioContraseñabloque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(PanelinicioSiguiente)
-                .addGap(36, 36, 36))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PanelinicioSiguiente)
+                    .addComponent(PanelinicioSiguiente1))
+                .addGap(42, 42, 42))
         );
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PanelinicioSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PanelinicioSiguienteActionPerformed
-      
-       String un = Paneliniciousuariobloque.getText();
-       String p = PanelinicioContraseñabloque.getText();
+    private void PanelinicioContraseñabloqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PanelinicioContraseñabloqueActionPerformed
+     // TODO add your handling code here:
+    }//GEN-LAST:event_PanelinicioContraseñabloqueActionPerformed
 
-       
+    private void PanelinicioSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PanelinicioSiguienteActionPerformed
+
+        String un = Paneliniciousuariobloque.getText();
+        String p = PanelinicioContraseñabloque.getText();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Academia", "root", "Bgarcia10+");
+            Statement st = conn.createStatement();
+            String sql = "select * from usuarios";
+
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                String usuario = rs.getString("usuario");
+                String passwd = rs.getString("contraseña");
+
+                if (un.equals(usuario) && p.equals(passwd)) {
+                    new Bienvenidos().setVisible(true);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Contraseña Incorrecta ");
+                }
+            }
+        } catch (HeadlessException | ClassNotFoundException | SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+      
     }//GEN-LAST:event_PanelinicioSiguienteActionPerformed
 
     private void PaneliniciousuariobloqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaneliniciousuariobloqueActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PaneliniciousuariobloqueActionPerformed
 
-    private void PanelinicioContraseñabloqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PanelinicioContraseñabloqueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PanelinicioContraseñabloqueActionPerformed
+    private void PanelinicioSiguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PanelinicioSiguiente1ActionPerformed
+           Paneliniciousuariobloque.setText("");
+           PanelinicioContraseñabloque.setText("");
+
+    }//GEN-LAST:event_PanelinicioSiguiente1ActionPerformed
 
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewJFrame().setVisible(true);
-            }
-        });
+        
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PanelinicioContraseña;
     private javax.swing.JPasswordField PanelinicioContraseñabloque;
     private javax.swing.JButton PanelinicioSiguiente;
+    private javax.swing.JButton PanelinicioSiguiente1;
     private javax.swing.JLabel PanelinicioUsuario;
     private javax.swing.JTextField Paneliniciousuariobloque;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
+
