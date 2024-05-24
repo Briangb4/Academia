@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
+
+
 public class iniciodesesion extends javax.swing.JFrame {
 
     public iniciodesesion() {
@@ -152,7 +154,14 @@ public class iniciodesesion extends javax.swing.JFrame {
                 String passwd = rs.getString("contraseña");
 
                 if (un.equals(usuario) && p.equals(passwd)) {
-                    new Bienvenidos().setVisible(true);
+                    
+                    java.awt.EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                            new Inicio().setVisible(true);
+                        }
+                    });
+                    
+                    
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Contraseña Incorrecta ");
@@ -176,11 +185,6 @@ public class iniciodesesion extends javax.swing.JFrame {
     }//GEN-LAST:event_PanelinicioSiguiente1ActionPerformed
 
 
-    public static void main(String args[]) {
-        
-       
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PanelinicioContraseña;
     private javax.swing.JPasswordField PanelinicioContraseñabloque;
@@ -192,5 +196,11 @@ public class iniciodesesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    private static class inicio {
+
+        public inicio() {
+        }
+    }
 }
 
