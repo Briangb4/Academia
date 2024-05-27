@@ -8,9 +8,6 @@ import academia.iniciodesesion;
  */
 public class Inicio extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Inicio
-     */
     public Inicio() {
         initComponents();
     }
@@ -57,6 +54,11 @@ public class Inicio extends javax.swing.JFrame {
 
         Volver.setBackground(new java.awt.Color(255, 0, 51));
         Volver.setText("Volver");
+        Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,8 +126,16 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonAlumnadoActionPerformed
 
     private void BotonMatriculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonMatriculasActionPerformed
-        // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Matriculas().setVisible(true);
+            }});
+        dispose();
     }//GEN-LAST:event_BotonMatriculasActionPerformed
+
+    private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VolverActionPerformed
 
 
 

@@ -159,10 +159,7 @@ public class iniciodesesion extends javax.swing.JFrame {
                         public void run() {
                             new Inicio().setVisible(true);
                         }
-                    });
-                    
-                    
-
+                    });                
                 } else {
                     JOptionPane.showMessageDialog(null, "Contraseña Incorrecta ");
                 }

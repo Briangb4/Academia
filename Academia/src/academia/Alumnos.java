@@ -155,7 +155,7 @@ public class Alumnos extends javax.swing.JFrame {
         // TODO add your handling code here:
         String fid=fd.getText();
         try{ Class.forName("com.mysql.jdbc.Driver");
-            Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/hms","root","");
+            Connection conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Academia", "root", "Bgarcia10+");
             Statement st= (Statement) conn.createStatement();
             String sql="DELETE FROM `doctor_record` WHERE ID="+fid;
             PreparedStatement pstmt=conn.prepareStatement(sql);
