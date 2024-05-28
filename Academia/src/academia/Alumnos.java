@@ -5,14 +5,58 @@ import com.mysql.jdbc.Statement;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 public class Alumnos extends javax.swing.JFrame {
 
     public Alumnos() {
         initComponents();
+        
+        try {
+            alumRegi();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    void alumRegi() throws ClassNotFoundException,SQLException{
+        try{ Class.forName("com.mysql.jdbc.Driver");
+                java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Academia", "root", "Bgarcia10+");
+                java.sql.Statement st= conn.createStatement();
+                String sql="select * from academia.alumnos";
+                PreparedStatement pstmt=conn.prepareStatement(sql);
+                ResultSet rs= pstmt.executeQuery();
+                DefaultTableModel tm=(DefaultTableModel)jTable1.getModel();
+                tm.setRowCount(0);
+                while(rs.next()){
+                Object o[]={
+                    rs.getInt("id"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido"),
+                    rs.getString("direccion"),
+                    rs.getString("telefono"),
+                    rs.getString("nombrepadre"),
+                    rs.getString("mail"),
+                    rs.getString("matricula"),
+                    rs.getString("mensualidad"),
+                    rs.getString("curso"),
+                    rs.getString("materia"),
+                    rs.getString("materia2"),
+                    rs.getString("horario"),
+                    rs.getString("horario2"),
+                    rs.getString("dias"),
+                    rs.getString("dias2")
+                };
+                tm.addRow(o);
+                }
+
+
+                 }catch(Exception e){
+                     JOptionPane.showMessageDialog(null,e);
+                 }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -26,7 +70,7 @@ public class Alumnos extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        fd = new javax.swing.JTextField();
+        idDel = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -53,20 +97,21 @@ public class Alumnos extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "Telefono"
+                "ID", "Nombre", "Apellido", "Direccion", "Telefono", "Padre/Madre", "Mail", "Matricula", "Mensualidad", "Curso", "Materia", "Materia 2", "Horario", "Horario 2", "Dia", "Dia 2"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -78,9 +123,9 @@ public class Alumnos extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel1.setText("Alumnado");
 
-        jLabel2.setText("Buscador ");
+        jLabel2.setText("Escriba el ID del alumno que quiere borrar:");
 
-        jButton2.setText("Buscar");
+        jButton2.setText("Eliminar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -101,7 +146,7 @@ public class Alumnos extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Implementar");
+        jButton5.setText("Actualizar Tabla");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -115,7 +160,7 @@ public class Alumnos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
                     .addComponent(jLabel1)
                     .addComponent(jButton5))
                 .addGap(10, 10, 10))
@@ -124,7 +169,7 @@ public class Alumnos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(fd, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(idDel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -151,7 +196,7 @@ public class Alumnos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton2)
-                            .addComponent(fd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(idDel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 42, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -165,16 +210,16 @@ public class Alumnos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       String fid=fd.getText();
+       String iddel=idDel.getText();
                  try{ Class.forName("com.mysql.jdbc.Driver");
                  java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Academia", "root", "Bgarcia10+");
                  java.sql.Statement st= conn.createStatement();
-                String sql="DELETE FROM `academia.alumnos` WHERE ID="+fid;
+                String sql="DELETE FROM `alumnos` WHERE ID="+iddel;
                 PreparedStatement pstmt=conn.prepareStatement(sql);
                 pstmt.executeUpdate();
                 JOptionPane.showMessageDialog(null, "datos borrado correctamente");
                 conn.close();
-                fd.setText("");
+                idDel.setText("");
                 }catch(Exception e){
                 JOptionPane.showMessageDialog(null, e);
                 }
@@ -205,7 +250,24 @@ public class Alumnos extends javax.swing.JFrame {
                 DefaultTableModel tm=(DefaultTableModel)jTable1.getModel();
                 tm.setRowCount(0);
                 while(rs.next()){
-                Object o[]={rs.getString("nombre"),rs.getString("apellido"),rs.getString("telefono")};
+                Object o[]={
+                    rs.getInt("id"),
+                    rs.getString("nombre"),
+                    rs.getString("apellido"),
+                    rs.getString("direccion"),
+                    rs.getString("telefono"),
+                    rs.getString("nombrepadre"),
+                    rs.getString("mail"),
+                    rs.getString("matricula"),
+                    rs.getString("mensualidad"),
+                    rs.getString("curso"),
+                    rs.getString("materia"),
+                    rs.getString("materia2"),
+                    rs.getString("horario"),
+                    rs.getString("horario2"),
+                    rs.getString("dias"),
+                    rs.getString("dias2")
+                };
                 tm.addRow(o);
                 }
 
@@ -251,7 +313,7 @@ public class Alumnos extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField fd;
+    private javax.swing.JTextField idDel;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
