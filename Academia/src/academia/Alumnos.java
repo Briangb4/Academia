@@ -2,6 +2,7 @@ package academia;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
+import javax.swing.JOptionPane;
 public class Alumnos extends javax.swing.JFrame {
 
     public Alumnos() {
@@ -152,7 +153,7 @@ public class Alumnos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        /*// TODO add your handling code here:
         String fid=fd.getText();
         try{ Class.forName("com.mysql.jdbc.Driver");
             Connection conn=DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/Academia", "root", "Bgarcia10+");
@@ -166,14 +167,15 @@ public class Alumnos extends javax.swing.JFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e);
         }
-
+*/
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+       /* // TODO add your handling code here:
         DOCTORS obj =new DOCTORS();
         obj.setVisible(true);
         dispose();
+        */
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

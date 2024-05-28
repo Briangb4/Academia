@@ -158,6 +158,7 @@ public class iniciodesesion extends javax.swing.JFrame {
                     java.awt.EventQueue.invokeLater(new Runnable() {
                         public void run() {
                             new Inicio().setVisible(true);
+                            dispose();
                         }
                     });                
                 } else {
